@@ -1,5 +1,5 @@
-#! /usr/bn/env python3
-from subprocess import call
+#! /usr/bin/env python3
+import subprocess
 import time
 morse= {
     'A':'._',
@@ -43,7 +43,8 @@ morse= {
     '8':'___..',
     '9':'____.',
     '0':'_____',
-    ' ' :'\n'
+    ' ':'\n',
+    '|':'\n'
 
 }
 
@@ -63,8 +64,8 @@ print("MORSE CODE CONVERSION :")
 print(viewCode,"\n")
 for element in code:
     if element == '.':
-        call(["aplay","./audio/dit.wav"])
+        subprocess.call(["aplay","./audio/dit.wav"],stderr=subprocess.DEVNULL)
     elif element == '_':
-        call(["aplay","./audio/dah.wav"])
+        subprocess.call(["aplay","./audio/dah.wav"],stderr=subprocess.DEVNULL)
     else:
         time.sleep(0.2)    

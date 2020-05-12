@@ -1,4 +1,6 @@
 #! /usr/bn/env python3
+from subprocess import call
+import time
 morse= {
     'A':'._',
     'B':'_...',
@@ -41,16 +43,28 @@ morse= {
     '8':'___..',
     '9':'____.',
     '0':'_____',
+    ' ' :'\n'
 
 }
 
 code = []
 text = input("Enter the message :")
-newForm = text.upper()
-msg = list(newForm)
+msg = text.upper()
+msg = list(msg)
 for letter in msg:
     for alphabet in morse.keys():
         if alphabet == letter:
             code.append(morse[alphabet])
-code = ''.join(str(element) for element in code)
-print("Morse Coded value :",code)
+viewCode = ''.join(str(element) for element in code)
+code = list(viewCode)
+print("\n\n::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n\n")
+print("MESSAGE : ",text,"\n")
+print("MORSE CODE CONVERSION :")
+print(viewCode,"\n")
+for element in code:
+    if element == '.':
+        call(["aplay","./audio/dit.wav"])
+    elif element == '_':
+        call(["aplay","./audio/dah.wav"])
+    else:
+        time.sleep(0.2)    
